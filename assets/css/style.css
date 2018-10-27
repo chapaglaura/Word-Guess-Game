@@ -3,7 +3,13 @@ html {
 }
 
 #animal-image {
-  transition: opacity 0.8s ease-in;
+  max-height: 50vh;
+  max-width: 100%;
+}
+
+.game {
+  padding: 15px;
+  border: 4px dashed darkgreen;
 }
 
 #word li {
@@ -21,16 +27,43 @@ html {
     text-transform: uppercase;
 }
 
+.title-container {
+  position: relative;
+}
+
+.safari {
+  font-family: "Special Elite";
+  color: red;
+  border: 5px ridge red;
+  padding: 10px 15px;
+  position: absolute;
+  top: 0;
+  transform: rotate(-20deg);
+  font-size: 3rem;
+  opacity: 0;
+    transform-origin: 50% 50%;
+    transform: rotate(-2deg) scale(5);
+    transition: all .3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.load {
+  opacity: 1;
+    transform: rotate(-15deg) scale(1);
+}
+
 .jumbotron {
     position: relative;
     overflow: hidden;
     background-color:black !important;
     color: white;
+    padding: 2rem 1rem !important;
   }
+
   .jumbotron img {
     position: absolute;
     z-index: 1;
     top: 0;
+    left: 0;
     width:100%;
     height:100%;
     /*  object-fit is not supported on IE  */
@@ -51,7 +84,7 @@ html {
 
   .jumbotron .container .lead {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   .colored {
@@ -103,5 +136,12 @@ html {
   {
     transform: scale(1, 1) rotate(-10deg);
     opacity: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .whole {
+    height: 100vh;
   }
 }

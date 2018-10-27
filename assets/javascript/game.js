@@ -5,9 +5,44 @@ var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 var keyPressed;
 var score = parseInt(document.getElementById("score").innerText);
 var word = document.getElementById("word"); //Variable to store span element of list of letters from chosen word
-var words = ["Lion", "Rabbit", "Dog", "Cat", "Hamster", "Hummingbird", "Whale", "Dolphin", "Horse", "Rhinoceros", "Elephant", "Giraffe", "Orangutan", "Koala", "Squirrel"] //Array of options to choose for the game
-var imgs = ["https://animals.sandiegozoo.org/sites/default/files/2016-09/animals_hero_lions_0.jpg", "https://t2.ea.ltmcdn.com/es/images/0/7/1/img_cuidados_del_conejo_3170_600.jpg", "https://cms.chewy.com/cms/spots/product-brand/img/royal-canin-miniatureschnauzerpuppy-main.jpg", "http://www.southerntraditionalsiamese.com/images/kitten_dec12d.jpg", "https://i.ytimg.com/vi/RMo8jl9s_OA/hqdefault.jpg", "https://es.calcuworld.com/wp-content/uploads/sites/2/2018/04/cuantos-anos-vivie-colibri.jpg", "https://ichef.bbci.co.uk/news/660/cpsprodpb/2A3F/production/_95151801_mediaitem95151800.jpg", "https://www.anipedia.net/imagenes/taxonomia-delfines.jpg", "https://quecome.org/wp-content/uploads/2016/09/que-come-caballo.jpg", "https://zoonooz.sandiegozoo.org/wp-content/uploads/2015/10/22229287295_7f62718aaf_o-860x450.jpg", "http://en.bcdn.biz/Images/2016/11/8/ac09e598-3f9b-4c64-a8bf-aa5d4105ef4b.jpg", "https://cumbrepuebloscop20.org/wp-content/uploads/2018/09/jirafa.jpg", "http://awsassets.wwf.es/img/orangutan_crias_87022.jpg", "https://www.cambio16.com/wp-content/uploads/2018/05/koala.jpg", "http://www.estudiantes.info/ciencias_naturales/images/ardilla-marron.png"];
+var words = ["Lion", "Bear", "Dog", "Cat", "Pig", "Zebra", "Whale", "Dolphin", "Horse", "Rhinoceros", "Elephant", "Snake", "Monkey", "Raccoon", "Squirrel"] //Array of options to choose for the game
+var imgs = [
+    "assets/images/lion.jpg",
+    "assets/images/bear.jpg",
+    "assets/images/dog.jpg",
+    "assets/images/cat.jpg",
+    "assets/images/pig.jpg",
+    "assets/images/zebra.jpg",
+    "assets/images/whale.jpg",
+    "assets/images/dolphin.jpg",
+    "assets/images/horse.jpg",
+    "assets/images/rhino.jpg",
+    "assets/images/elephant.jpg",
+    "assets/images/snake.jpg",
+    "assets/images/monkey.jpeg",
+    "assets/images/raccoon.jpg",
+    "assets/images/squirrel.png"
+];
 
+var sounds = [
+    "assets/sounds/bear.mp3",
+    "assets/sounds/lion.mp3",
+    "assets/sounds/dog.mp3",
+    "assets/sounds/cat.wav",
+    "assets/sounds/pig.mp3",
+    "assets/sounds/zebra.mp3",
+    "assets/sounds/whale.mp3",
+    "assets/sounds/dolphin.mp3",
+    "assets/sounds/horse.wav",
+    "assets/sounds/rhino.mp3",
+    "assets/sounds/elephant.mp3",
+    "assets/sounds/snake.mp3",
+    "assets/sounds/monkey.wav",
+    "assets/sounds/raccoon.mp3",
+    "assets/sounds/squirrel.mp3"
+];
+
+var audio = new Audio('');
 var letterList; // Variable to store letters already guessed displayed on screen as a string
 var letterArray = []; //Array of letters already guessed
 var tmp = 0; //temporal variable
@@ -22,7 +57,13 @@ noSpaces = wordChosen.split(" ").join("");
 n = noSpaces.length + 3; //number of guesses in total
 guess.innerText = n; //displays total number of guesses
 
+setTimeout(function(){
+    $('.safari').addClass('load');
+  },500);
+
 writeBlanks();
+
+
 
 //On key press...
 document.onkeyup = function (event) {
@@ -47,7 +88,7 @@ document.onkeyup = function (event) {
                 void document.getElementById("score").offsetWidth;
                 document.getElementById("score").classList.add("slam");
                 document.getElementById("score").innerText = score;
-                    update();
+                update();
             }
             else if (n === 0 && tmp != noSpaces.length) {
                 displayAll();
@@ -74,9 +115,15 @@ function update() {
     letterArray = []; //Array of letters already guessed
     tmp = 0; //temporal variable
     n; //Variable to store number of guesses remaining
+    
+    audio.pause();
 
-    $("#animal-image").css('opacity', '0');
-    $("#animal-image").css('opacity', '1');
+    $("#animal-image").attr("src", imgs[random]);
+
+    audio = new Audio(sounds[random]);
+    audio.play();
+
+
     while (word.firstChild) {
         word.removeChild(word.firstChild);
     }
@@ -92,7 +139,7 @@ function update() {
 
     document.getElementById("letters").innerText = '';
 
-    $("#animal-image").attr("src", imgs[random]);
+
 
     writeBlanks();
 }
