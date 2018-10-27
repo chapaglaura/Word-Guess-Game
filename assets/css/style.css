@@ -46,6 +46,11 @@ html {
     transition: all .3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
 }
 
+.clue {
+  opacity: 0;
+  transition: all 0.2s ease-in;
+}
+
 .load {
   opacity: 1;
     transform: rotate(-15deg) scale(1);

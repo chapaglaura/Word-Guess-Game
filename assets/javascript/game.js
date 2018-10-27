@@ -25,8 +25,8 @@ var imgs = [
 ];
 
 var sounds = [
-    "assets/sounds/bear.mp3",
     "assets/sounds/lion.mp3",
+    "assets/sounds/bear.mp3",
     "assets/sounds/dog.mp3",
     "assets/sounds/cat.wav",
     "assets/sounds/pig.mp3",
@@ -41,6 +41,25 @@ var sounds = [
     "assets/sounds/raccoon.mp3",
     "assets/sounds/squirrel.mp3"
 ];
+
+var clues = [
+    "The king of the jungle.",
+    "They usually eat salmon and are big and furry.",
+    "Man's best friend.",
+    "They would love to rule over mankind.",
+    "They love rolling around on mud.",
+    "Black and white horses.",
+    "Dory can speak to them.",
+    "Cutest mammals in the ocean.",
+    "Used for races and riding.",
+    "Sadly, they are critically endangered because of the value of their horn.",
+    "They have really good memory.",
+    "SSSZZZSSZZSSZZSSS...",
+    "OOH, AH, AH, AH!",
+    "The burglars of the animal kingdom.",
+    "They looove acorns."
+];
+
 
 var audio = new Audio('');
 var letterList; // Variable to store letters already guessed displayed on screen as a string
@@ -63,6 +82,15 @@ setTimeout(function(){
 
 writeBlanks();
 
+var clue = clues[random];
+
+$(".clue").text(clue);
+
+
+
+$(".button-clue").click(function() {
+    $(".clue").css('opacity','1');
+})
 
 
 //On key press...
@@ -123,6 +151,7 @@ function update() {
     audio = new Audio(sounds[random]);
     audio.play();
 
+    $(".clue").css('opacity','0');
 
     while (word.firstChild) {
         word.removeChild(word.firstChild);
@@ -136,9 +165,11 @@ function update() {
     n = noSpaces.length + 3; //number of guesses in total
     guess.innerText = n; //displays total number of guesses
 
-
     document.getElementById("letters").innerText = '';
 
+    clue = clues[random];
+
+    $(".clue").text(clue);
 
 
     writeBlanks();
